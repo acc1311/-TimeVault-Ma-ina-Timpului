@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TimeVault — Mașina Timpului</title>
+  <meta name="description" content="Mașina timpului: evenimente istorice din ziua aleasă, cu poze și surse." />
+  <meta name="theme-color" content="#0d0e14" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="dark">
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">⏳</span>
+      <div class="brand-text">
+        <strong>TimeVault</strong>
+        <small>Mașina Timpului</small>
+      </div>
+    </div>
+
+    <div class="topbar-controls">
+      <label class="select-wrap" title="Limbă">
+        <span class="visually-hidden">Limbă</span>
+        <select id="langSelect" aria-label="Limbă">
+          <option value="ro" selected>RO</option>
+          <option value="en">EN</option>
+          <option value="de">DE</option>
+          <option value="fr">FR</option>
+          <option value="es">ES</option>
+          <option value="it">IT</option>
+        </select>
+      </label>
+
+      <button id="themeToggle" class="icon-btn" title="Comută tema" aria-label="Comută tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow" id="heroEyebrow">În ziua aceasta în istorie</p>
+      <h1 class="hero-date" id="heroDate">31 August</h1>
+      <p class="hero-sub" id="heroSub">Descoperă ce s-a întâmplat de-a lungul secolelor.</p>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="dateInput">Alege o dată</label>
+          <input type="date" id="dateInput" />
+        </div>
+        <div class="control-actions">
+          <button class="btn btn-primary" id="todayBtn">Astăzi</button>
+          <button class="btn btn-ghost" id="randomBtn">Zi aleatorie</button>
+        </div>
+      </div>
+
+      <div class="stats" id="stats" hidden>
+        <div class="stat">
+          <span class="stat-num" id="statCount">0</span>
+          <span class="stat-label" id="statEventsLabel">evenimente</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="statSpan">—</span>
+          <span class="stat-label" id="statSpanLabel">interval ani</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="statMedia">0</span>
+          <span class="stat-label" id="statMediaLabel">cu imagini</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="filter-bar" id="filterBar" hidden>
+      <div class="filter-head">
+        <span>Filtrează după epocă</span>
+        <span class="filter-range" id="filterRange">—</span>
+      </div>
+      <div class="range-slider">
+        <input type="range" id="yearMin" min="0" max="2026" value="0" />
+        <input type="range" id="yearMax" min="0" max="2026" value="2026" />
+      </div>
+    </section>
+
+    <section class="toolbar" id="toolbar" hidden>
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="searchInput" placeholder="Caută..." aria-label="Caută" />
+      </div>
+      <div class="toolbar-actions">
+        <button id="exportFavs" class="tool-btn" title="Exportă favorite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+        <button id="importFavs" class="tool-btn" title="Importă favorite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </button>
+        <button id="favToggle" class="tool-btn" title="Favorite" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button id="viewToggle" class="tool-btn" title="Schimbă vizualizarea" aria-pressed="false">
+          <svg class="icon-card" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <svg class="icon-list" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
+        <input type="file" id="importFavsInput" accept=".json,application/json" hidden />
+      </div>
+    </section>
+
+    <section class="timeline" id="timeline" aria-live="polite">
+      <div class="placeholder" id="placeholder">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Se încarcă evenimentele…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p id="footerText"><span data-role="footerPrefix">Date istorice oferite de </span><a href="https://www.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a><span data-role="footerSuffix"> (API REST). Construit ca o mașină a timpului.</span></p>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="Închide">×</button>
+      <div class="modal-media" id="modalMedia"></div>
+      <div class="modal-body">
+        <span class="modal-year" id="modalYear"></span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-extract" id="modalExtract"></p>
+        <p class="modal-desc" id="modalDesc" hidden></p>
+        <div class="modal-actions">
+          <a class="btn btn-primary" id="modalLink" target="_blank" rel="noopener">Citește pe Wikipedia →</a>
+          <button class="btn btn-ghost btn-share-modal" id="modalShare">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span>Share</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
