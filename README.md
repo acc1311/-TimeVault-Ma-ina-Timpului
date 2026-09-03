@@ -119,5 +119,3 @@
 *Construit ca o mașină a timpului. ⏳ / Built as a time machine. ⏳*
 
 ```
-
-```
