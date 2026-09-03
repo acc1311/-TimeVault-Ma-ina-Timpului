@@ -1,83 +1,62 @@
-# ⏳ TimeVault — Mașina Timpului
+# ⏳ TimeVault — Mașina Timpului / Time Machine
 
-O aplicație web interactivă care îți arată **ce s-a întâmplat în istorie într-o anumită zi** — cu poze, descrieri și traduceri multilingve. Explorează evenimente istorice de la anul 38 până în prezent.
+[![License: Free](https://img.shields.io/badge/License-Free-green.svg)](#-licență--license)
+[![PWA](https://img.shields.io/badge/PWA-installable-purple.svg)](#-tehnologii--technologies)
+[![Languages](https://img.shields.io/badge/languages-6-orange.svg)](#-limbi-suportate--supported-languages)
 
-## ✨ Funcționalități
-
-- 🗓️ **Explorează orice dată** — alege o zi din calendar, sau folosește butoanele *Astăzi* / *Zi aleatorie*
-- 🌍 **Multilingv** — interfață și conținut traduse automat în **RO, EN, DE, FR, ES, IT**
-- 🔄 **Traducere automată** (Google Translate) — fără limită, fără cheie API, fără cont
-- 🗂️ **Filtrare după epocă** — glisează intervalul de ani pentru a restrânge rezultatele
-- 🔍 **Căutare** — filtrează evenimentele după titlu, an sau text
-- ⭐ **Favorite** — salvează evenimentele preferate (stocate local)
-- 📤 **Export / Import** favorite — salvează lista ca fișier `.json` și o poți restaura
-- 📜 **Scroll infinit** — încarcă automat mai multe evenimente când derulezi
-- 🎴 **Toggle vizualizare** — comută între carduri cu imagini și listă compactă
-- 🔗 **Share** — partajează evenimente cu text + link
-- 🔎 **Modal detaliat** — fă click pe un eveniment pentru descriere completă, imagine și link Wikipedia
-- 🌗 **Temă dark / light** — comutabilă, salvată în browser
-- 📱 **PWA** — instalabil pe mobil/desktop, funcționează parțial offline
-
-## 🚀 Cum o folosești
-
-Este o aplicație **frontend pură** — nu necesită server, build sau instalare.
-
-1. **Local:** deschide `index.html` direct în browser (dublu-click pe fișier). *(Service worker-ul/PWA necesită HTTP(S) — pentru localhost folosește un server local: `python -m http.server` în folder.)*
-2. **Online (GitHub Pages):** urcă conținutul folderului într-un repo GitHub și activează *Settings → Pages → Deploy from branch* (branch `main`, root `/`).
-
-> 💡 **Notă rețea:** aplicația are nevoie de internet pentru a accesa API-ul Wikipedia și Google Translate.
-
-## 📁 Structură
-
-```
-├── index.html           # Structura paginii
-├── styles.css           # Stiluri, teme dark/light, animații
-├── app.js               # Toată logica: date, traducere, filtrare, click
-├── sw.js                # Service worker (PWA/offline)
-├── manifest.webmanifest # Manifest PWA
-├── icon-192.png         # Icon aplicație (192px)
-├── icon-512.png         # Icon aplicație (512px)
-└── README.md            # Documentație
-```
-
-## 🛠️ Tehnologii
-
-- **Vanilla JavaScript** (ES6+) — fără framework
-- **Wikipedia REST API** — endpoint-ul `/feed/onthisday/events/{month}/{day}` pentru evenimentele zilei
-- **Google Translate API** (endpoint gratuit `translate.googleapis.com`) — pentru traducere instantă
-- **localStorage** — pentru preferințe (temă, limbă, vizualizare) și lista de favorite
-- **Web Share API** — partajare nativă pe dispozitive mobile
-- **Service Worker + PWA** — instalabil, cache offline pentru shell-ul aplicației și date
-- **IntersectionObserver** — scroll infinit pentru încărcare automată
-
-## 🌐 Limbi suportate
-
-| Cod | Limbă | UI tradus | Conținut tradus |
-|-----|-------|-----------|-----------------|
-| RO | Română | ✅ | ✅ (din EN)  |
-| EN | Engleză | ✅ | nativ |
-| DE | Germană | ✅ | nativ |
-| FR | Franceză | ✅ | nativ |
-| ES | Spaniolă | ✅ | nativ |
-| IT | Italiană | ✅ | nativ |
-
-Pentru **RO** (și orice limbă fără conținut Wikipedia nativ) aplicația citește evenimentele în engleză și le traduce instant în limbă aleasă.
-
-## 📄 API-uri folosite
-
-- **Wikipedia:** `https://{lang}.wikipedia.org/api/rest_v1/feed/onthisday/events/{MM}/{DD}`
-- **Google Translate:** `https://translate.googleapis.com/translate_a/single?client=gtx&sl={src}&tl={dst}&dt=t&q={text}`
-
-## 🔒 Confidențialitate
-
-- Fără conturi, fără cookie-uri, fără tracking
-- Toate preferințele rămân **în browserul tău** (localStorage)
-- Datele istorice provin de la Wikipedia (licență cc-by-sa)
-
-## 📝 Licență
-
-Free to use and modify for personal and educational purposes.
+> **RO:** O aplicație web interactivă care îți arată **ce s-a întâmplat în istorie într-o anumită zi** — cu poze, descrieri și traduceri multilingve. Explorează evenimente istorice de la anul 38 până în prezent.
+>
+> **EN:** An interactive web application that shows you **what happened in history on a specific day** — featuring photos, descriptions, and multilingual translations. Explore historical events from 38 AD to the present day.
 
 ---
 
-Construit ca o mașină a timpului. ⏳
+## ✨ Funcționalități / Features
+
+| Funcționalitate / Feature | Descriere (RO) | Description (EN) |
+|---|---|---|
+| 🗓️ **Date Explorer** | Alege o zi din calendar, sau folosește *Astăzi* / *Zi aleatorie*. | Pick a calendar day, or use *Today* / *Random day*. |
+| 🌍 **Multilingual** | Interfață și conținut traduse în **RO, EN, DE, FR, ES, IT**. | Interface and content translated into **RO, EN, DE, FR, ES, IT**. |
+| 🔄 **Auto Translation** | Traducere automată (Google Translate) fără limită/cheie API. | Unlimited automatic translation via Google Translate (no API key required). |
+| 🗂️ **Era Filtering** | Glisează intervalul de ani pentru a restrânge rezultatele. | Slide the year range selector to narrow down events. |
+| 🔍 **Search** | Filtrează evenimentele după titlu, an sau text. | Filter events by title, year, or content text. |
+| ⭐ **Favorites** | Salvează evenimentele preferate în `localStorage`. | Save favorite historical events directly to `localStorage`. |
+| 📤 **Export / Import** | Salvează și restaurează lista de favorite ca fișier `.json`. | Export and restore your favorites list as a `.json` file. |
+| 📜 **Infinite Scroll** | Încarcă automat mai multe evenimente la derulare. | Automatically loads more historical events upon scrolling. |
+| 🎴 **Toggle View** | Comută între carduri cu imagini și listă compactă. | Switch between visual image cards and a compact list view. |
+| 🔗 **Share** | Partajează evenimente cu text și link direct. | Share events directly with text and link integration. |
+| 🔎 **Detail Modal** | Click pentru descriere completă, imagine și link Wikipedia. | Click any event for full description, image, and Wikipedia link. |
+| 🌗 **Dark / Light Theme** | Temă comutabilă, salvată automat în browser. | Toggleable dark/light theme, saved automatically in browser. |
+| 📱 **PWA Support** | Instalabil pe mobil/desktop, funcționează parțial offline. | Installable on mobile/desktop with partial offline capabilities. |
+
+---
+
+## 🚀 Cum o folosești / How to Use
+
+**RO:** Este o aplicație **frontend pură** — nu necesită server, build sau pas de instalare.  
+**EN:** It is a **pure frontend application** — requires no backend server, build process, or installation.
+
+### 1. Local / Local Environment
+- **RO:** Deschide `index.html` direct în browser (dublu-click pe fișier). *Notă: Pentru PWA/Service Worker este recomandat un server local (`python -m http.server` în folder).*
+- **EN:** Open `index.html` directly in your browser. *Note: For PWA/Service Worker support, a local HTTP server is recommended (`python -m http.server` inside the directory).*
+
+### 2. Online (GitHub Pages)
+- **RO:** Urcă folderul într-un depozit GitHub și activează *Settings → Pages → Deploy from branch* (`main`, root `/`).
+- **EN:** Push the directory to a GitHub repository and enable *Settings → Pages → Deploy from branch* (`main`, root `/`).
+
+> 💡 **Notă rețea / Network note:**  
+> **RO:** Aplicația necesită conexiune la internet pentru API-urile Wikipedia și Google Translate.  
+> **EN:** An active internet connection is required to fetch Wikipedia events and perform dynamic translations.
+
+---
+
+## 📁 Structură Proiect / Project Structure
+
+```text
+├── index.html            # Structura paginii / Markup layout
+├── styles.css            # Stiluri, teme dark/light, animații / Styling & themes
+├── app.js                # Logică: date, traducere, filtrare / App logic
+├── sw.js                 # Service worker (PWA/offline)
+├── manifest.webmanifest  # Manifest PWA
+├── icon-192.png          # Icon aplicație (192px)
+├── icon-512.png          # Icon aplicație (512px)
+└── README.md             # Documentație / Documentation
