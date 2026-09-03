@@ -1,3 +1,4 @@
+
 # ⏳ TimeVault — Mașina Timpului / Time Machine
 
 [![License: Free](https://img.shields.io/badge/License-Free-green.svg)](#-licență--license)
@@ -60,3 +61,63 @@
 ├── icon-192.png          # Icon aplicație (192px)
 ├── icon-512.png          # Icon aplicație (512px)
 └── README.md             # Documentație / Documentation
+
+```
+
+---
+
+## 🛠️ Tehnologii / Technologies
+
+* **Vanilla JavaScript (ES6+)** — Fără framework-uri externe / *Framework-free implementation*
+* **Wikipedia REST API** — Endpoint `/feed/onthisday/events/{month}/{day}`
+* **Google Translate API** — Endpoint gratuit `translate.googleapis.com` / *Free translation endpoint*
+* **localStorage** — Salvare preferințe și lista de favorite / *Stores user preferences & favorites*
+* **Web Share API** — Partajare nativă pe dispozitive mobile / *Native mobile sharing*
+* **Service Worker + PWA** — Instalabil, cache offline / *Installable app shell caching*
+* **IntersectionObserver** — Scroll infinit performant / *Smooth infinite scrolling*
+
+---
+
+## 🌐 Limbi Suportate / Supported Languages
+
+| Cod / Code | Limbă / Language | Interfață / UI | Conținut / Content |
+| --- | --- | --- | --- |
+| **RO** | Română / Romanian | ✅ | ✅ *(Tradus din EN / Translated from EN)* |
+| **EN** | Engleză / English | ✅ | Nativ / Native |
+| **DE** | Germană / German | ✅ | Nativ / Native |
+| **FR** | Franceză / French | ✅ | Nativ / Native |
+| **ES** | Spaniolă / Spanish | ✅ | Nativ / Native |
+| **IT** | Italiană / Italian | ✅ | Nativ / Native |
+
+> **RO:** Pentru limbi fără suport Wikipedia direct (precum **RO**), aplicația preia evenimentele în engleză și le traduce automat pe loc.
+> **EN:** For languages without native Wikipedia feeds (such as **RO**), the application fetches events in English and performs dynamic instant translations.
+
+---
+
+## 📄 API-uri Utilizate / Used APIs
+
+* **Wikipedia:** `https://{lang}.wikipedia.org/api/rest_v1/feed/onthisday/events/{MM}/{DD}`
+* **Google Translate:** `https://translate.googleapis.com/translate_a/single?client=gtx&sl={src}&tl={dst}&dt=t&q={text}`
+
+---
+
+## 🔒 Confidențialitate / Privacy
+
+* **RO:** Fără conturi, cookie-uri sau urmărire (tracking). Toate datele sunt salvate **local în browserul tău** (`localStorage`).
+* **EN:** No accounts, cookies, or tracking. All preferences and saved events remain **locally in your browser** (`localStorage`).
+
+---
+
+## 📝 Licență / License
+
+**RO:** Gratuit pentru utilizare și modificare în scopuri personale și educaționale.
+
+**EN:** Free to use and modify for personal and educational purposes.
+
+---
+
+*Construit ca o mașină a timpului. ⏳ / Built as a time machine. ⏳*
+
+```
+
+```
