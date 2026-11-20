@@ -5,6 +5,10 @@
 [![PWA](https://img.shields.io/badge/PWA-installable-purple.svg)](#-tehnologii--technologies)
 [![Languages](https://img.shields.io/badge/languages-6-orange.svg)](#-limbi-suportate--supported-languages)
 
+
+https://acc1311.github.io/-TimeVault-Ma-ina-Timpului/?sfnsn=wa
+
+
 > **RO:** O aplicație web interactivă care îți arată **ce s-a întâmplat în istorie într-o anumită zi** — cu poze, descrieri și traduceri multilingve. Explorează evenimente istorice de la anul 38 până în prezent.
 >
 > **EN:** An interactive web application that shows you **what happened in history on a specific day** — featuring photos, descriptions, and multilingual translations. Explore historical events from 38 AD to the present day.
